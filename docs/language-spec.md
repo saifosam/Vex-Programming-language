@@ -62,8 +62,30 @@ Supported tags:
     divider beneath it; `subtitle` and `caption` are progressively
     smaller and lighter). Defaults to `"subtitle"` if omitted.
   - `color`, `font_size` — inline overrides for this specific tag.
-- `button("label", onclick=function_name, background=..., color=..., font_size=...)`
+- `button("label", onclick=function_name, background=..., color=..., font_size=..., row=..., col=..., span=...)`
   — displays a clickable button. `function_name` must be defined in `logic:`.
+- `display(bind="varname", font_size=..., color=..., align="left"|"center"|"right")`
+  — displays a bound value from `logic:` and updates when the runtime
+    refresh function is called.
+- `avatar(source="Name", background=..., color=..., size=...)`
+  — displays initials in a circular badge.
+- `note("text", x=..., y=..., width=..., height=..., color=...)`
+  — a draggable note inside a `canvas`.
+- `palette(colors="#abc,#def,...")`
+  — renders clickable color swatches for recoloring selected notes.
+- `tool("Label", action="add_note"|"add_image")`
+  — a framework action button that can add notes or images to a `canvas`.
+- `canvas(width=..., height=..., background=...)`:
+  — a freeform surface for absolute-positioned draggable children.
+- `card(background=..., corner_radius=..., shadow=...)`:
+  — a styled content panel.
+- `row()` and `column()`:
+  — layout containers that arrange children horizontally or vertically.
+- `grid(cols=..., rows=...)`:
+  — a table-like layout container for row/column-positioned children.
+- generic fallback tags:
+  any unrecognized tag is mapped to a `customtkinter` widget class by name
+  (for example, `entry(...)` becomes `CTkEntry(...)`).
 
 Example:
     view:
@@ -83,14 +105,13 @@ For any given element, styling is resolved in this order (highest wins):
 
 - Syntax errors in `logic:` are reported with file and line number.
 - Unknown tags in `view:` raise an error with a suggestion if a close
-  match exists (powered by `difflib`).
+  match exists.
 
 ## Known limitations (v1)
 
 - No reactivity: the UI reflects state at compile time only and does
-  not auto-update when variables change afterward (e.g. clicking a
-  button that modifies a variable won't refresh an on-screen label
-  showing that variable's value).
-- Only `text` and `button` tags are currently supported.
+  not auto-update automatically when variables change afterward.
+- Widgets bound with `bind=` are refreshed only when `ctx["refresh"]()`
+  is called from event handlers such as button callbacks.
 - The rendering target is `customtkinter` (desktop only) — there is no
   web/HTML output.

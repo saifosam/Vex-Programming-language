@@ -1,3 +1,4 @@
+import difflib
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import filedialog, colorchooser
@@ -412,7 +413,10 @@ def render_generic(parent, tag, style, namespace, ctx):
     class_name = "CTk" + tag["name"][0].upper() + tag["name"][1:]
     widget_class = getattr(ctk, class_name, None)
     if widget_class is None:
-        raise VexError(f"'{tag['name']}' isn't a known Vex tag or customtkinter widget.")
+        known = sorted(list(CONTAINER_TAGS) + list(LEAF_TAGS))
+        suggestion = difflib.get_close_matches(tag["name"], known, n=1, cutoff=0.6)
+        hint = f" Did you mean '{suggestion[0]}'?" if suggestion else ""
+        raise VexError(f"'{tag['name']}' isn't a known Vex tag or customtkinter widget.{hint}")
     try:
         widget = widget_class(parent, **tag["kwargs"])
     except TypeError as e:

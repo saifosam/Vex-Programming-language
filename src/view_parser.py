@@ -1,6 +1,5 @@
 import ast
 import textwrap
-import difflib
 from src.errors import VexError
 
 
