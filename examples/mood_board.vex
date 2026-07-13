@@ -1,0 +1,21 @@
+style:
+    window:
+        title: Mood Board
+        width: 680
+        height: 560
+    card:
+        shadow: true
+
+logic:
+    pass
+
+view:
+    card():
+        text("Mood Board", role="title")
+        palette(colors="#fde68a,#bfdbfe,#bbf7d0,#fbcfe8,#e5e7eb,#fca5a5")
+        canvas(width=600, height=380, background="#f9fafb"):
+            note("Soft pastels", color="#fde68a", x=20, y=20)
+            note("Ocean calm", color="#bfdbfe", x=180, y=60)
+            note("Minimal & clean", color="#bbf7d0", x=340, y=30)
+            note("Warm accents", color="#fbcfe8", x=60, y=180)
+            note("Try me — drag & recolor", color="#e5e7eb", x=280, y=200)

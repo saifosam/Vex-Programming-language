@@ -1,0 +1,103 @@
+style:
+    window:
+        title: Calculator
+        background: "#000000"
+        width: 320
+        height: 480
+    card:
+        background: "#000000"
+        corner_radius: 0
+        shadow: false
+    display:
+        background: "#000000"
+        color: white
+        font_size: 48
+    button:
+        font_size: 20
+
+logic:
+    expression = "0"
+
+    def press_digit(d):
+        global expression
+        if expression == "0":
+            expression = d
+        else:
+            expression += d
+
+    def press_0(): press_digit("0")
+    def press_1(): press_digit("1")
+    def press_2(): press_digit("2")
+    def press_3(): press_digit("3")
+    def press_4(): press_digit("4")
+    def press_5(): press_digit("5")
+    def press_6(): press_digit("6")
+    def press_7(): press_digit("7")
+    def press_8(): press_digit("8")
+    def press_9(): press_digit("9")
+
+    def press_dot():
+        global expression
+        if "." not in expression:
+            expression += "."
+
+    def press_op(op):
+        global expression
+        expression += op
+
+    def press_plus(): press_op("+")
+    def press_minus(): press_op("-")
+    def press_times(): press_op("*")
+    def press_divide(): press_op("/")
+
+    def press_clear():
+        global expression
+        expression = "0"
+
+    def press_toggle_sign():
+        global expression
+        try:
+            expression = str(-float(expression))
+        except ValueError:
+            pass
+
+    def press_percent():
+        global expression
+        try:
+            expression = str(float(expression) / 100)
+        except ValueError:
+            expression = "Error"
+
+    def press_equals():
+        global expression
+        try:
+            expression = str(eval(expression))
+        except Exception:
+            expression = "Error"
+
+view:
+    display(bind="expression")
+    grid(cols=4, rows=5):
+        button("C", onclick=press_clear, row=0, col=0, background="#a5a5a5", color="black")
+        button("+/-", onclick=press_toggle_sign, row=0, col=1, background="#a5a5a5", color="black")
+        button("%", onclick=press_percent, row=0, col=2, background="#a5a5a5", color="black")
+        button("÷", onclick=press_divide, row=0, col=3, background="#ff9500")
+
+        button("7", onclick=press_7, row=1, col=0, background="#333333")
+        button("8", onclick=press_8, row=1, col=1, background="#333333")
+        button("9", onclick=press_9, row=1, col=2, background="#333333")
+        button("×", onclick=press_times, row=1, col=3, background="#ff9500")
+
+        button("4", onclick=press_4, row=2, col=0, background="#333333")
+        button("5", onclick=press_5, row=2, col=1, background="#333333")
+        button("6", onclick=press_6, row=2, col=2, background="#333333")
+        button("−", onclick=press_minus, row=2, col=3, background="#ff9500")
+
+        button("1", onclick=press_1, row=3, col=0, background="#333333")
+        button("2", onclick=press_2, row=3, col=1, background="#333333")
+        button("3", onclick=press_3, row=3, col=2, background="#333333")
+        button("+", onclick=press_plus, row=3, col=3, background="#ff9500")
+
+        button("0", onclick=press_0, row=4, col=0, span=2, background="#333333")
+        button(".", onclick=press_dot, row=4, col=2, background="#333333")
+        button("=", onclick=press_equals, row=4, col=3, background="#ff9500")

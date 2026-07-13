@@ -1,0 +1,18 @@
+style:
+    window:
+        title: Saif
+        width: 380
+        height: 370
+
+logic:
+    import webbrowser
+    def open_github():
+        webbrowser.open("https://github.com/yourusername")
+
+view:
+    card(shadow="true"):
+        avatar(source="Saif")
+        text("Saif", role="title", color="black", font_size=22)
+        text("Aspiring Software Engineer", role="subtitle")
+        text("saif@example.com", role="caption")
+        button("View GitHub", onclick=open_github, background="#16a34a")

@@ -1,0 +1,15 @@
+style:
+    text:
+        color: blue
+    button:
+        color: red
+
+logic:
+    count = 0
+
+    def increment():
+        print("clicked!")
+
+view:
+    text("Count is 0")
+    button("Click me", onclick=increment)
