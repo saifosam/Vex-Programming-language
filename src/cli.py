@@ -1,10 +1,10 @@
 import sys
 import textwrap
-from src.zones import split_zones
-from src.style_parser import parse_style
-from src.view_parser import parse_view
-from src.codegen import generate_app
-from src.errors import VexError
+from zones import split_zones
+from style_parser import parse_style
+from view_parser import parse_view
+from codegen import generate_app
+from errors import VexError
 
 def main():
     path = sys.argv[1]

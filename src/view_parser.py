@@ -1,6 +1,6 @@
 import ast
 import textwrap
-from src.errors import VexError
+from errors import VexError
 
 
 def _parse_call_str(call_str, line_no):

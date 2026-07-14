@@ -3,7 +3,7 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import filedialog, colorchooser
 from PIL import Image
-from src.errors import VexError
+from errors import VexError
 
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")

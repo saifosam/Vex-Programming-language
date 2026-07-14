@@ -1,4 +1,6 @@
 from .errors import VexError
+import textwrap
+
 
 class Interpreter:
     def __init__(self, ast_root):
@@ -6,26 +8,37 @@ class Interpreter:
         self.env = {}
 
     def run(self):
+        style_ast = None
+        logic_text = ""
+        view_ast = None
         for section in self.ast.children:
-            if section.type == "logic":
-                self.run_logic(section)
-            elif section.type == "style":
-                self.run_style(section)
-            elif section.type == "view":
-                self.run_view(section)
+            if section.type == "Style":
+                style_ast = section.value
+            elif section.type == "Logic":
+                logic_text = section.value or ""
+            elif section.type == "View":
+                view_ast = section.value
 
-    def run_logic(self, section):
-        code = self.tokens_to_source(section.value)
+        if style_ast is None:
+            style_ast = {}
+        if view_ast is None:
+            view_ast = []
+
         try:
-            exec(code, self.env)
+            logic_code = textwrap.dedent(logic_text)
+            exec(compile(logic_code, "<logic>", "exec"), self.env)
+        except SyntaxError as e:
+            raise VexError(f"Syntax error in logic: {e.msg}", line=e.lineno)
         except Exception as e:
-            raise VexError(str(e), line=section.line)
+            raise VexError(str(e))
 
-    def run_style(self, section):
-        pass
+        try:
+            from codegen import generate_app
+        except ImportError as e:
+            raise VexError(f"Could not initialize GUI runtime: {e}")
 
-    def run_view(self, section):
-        pass
-
-    def tokens_to_source(self, tokens):
-        return "".join(token.value for token in tokens)
+        try:
+            app = generate_app(style_ast, view_ast, self.env)
+            app.mainloop()
+        except Exception as e:
+            raise VexError(str(e))

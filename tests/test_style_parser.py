@@ -1,4 +1,4 @@
-from src.style_parser import parse_style
+from style_parser import parse_style
 
 def test_single_selector():
     sample = """    button:

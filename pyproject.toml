@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vex-lang"
+version = "0.1.0"
+description = "Vex GUI DSL and runtime for Python-based applications"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["customtkinter", "Pillow"]
+authors = [
+    { name = "Saif" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Software Development :: User Interfaces",
+]
+urls = { "Source" = "https://github.com/yourname/vex-lang" }
+
+[project.scripts]
+vex = "vex.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["vexlang", "vex"]
+py-modules = ["cli", "codegen", "errors", "style_parser", "view_parser", "zones"]

@@ -1,3 +1,22 @@
+Metadata-Version: 2.4
+Name: vex-lang
+Version: 0.1.0
+Summary: Vex GUI DSL and runtime for Python-based applications
+Author: Saif
+License: MIT
+Project-URL: Source, https://github.com/yourname/vex-lang
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Software Development :: User Interfaces
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: customtkinter
+Requires-Dist: Pillow
+Dynamic: license-file
+
 # Vex Programming Language
 
 Vex is a tiny Python-based DSL for building styled desktop apps using `customtkinter`.
@@ -159,17 +178,3 @@ python -m build
 python -m twine check dist/*
 python -m twine upload dist/*
 ```
-
-## Desktop installer
-
-To create a standalone Windows executable, use PyInstaller:
-
-```powershell
-python -m pip install --upgrade pyinstaller
-scripts\build_installer.bat
-```
-
-This generates `dist\vex.exe`, which can be run against `.vex` files directly.
-For a full installer package, wrap `dist\vex.exe` with Inno Setup or NSIS.
-
-Read more in [docs/INSTALLER.md](docs/INSTALLER.md).

@@ -1,4 +1,4 @@
-from src.zones import split_zones
+from zones import split_zones
 
 def test_basic_split():
     source = """style:

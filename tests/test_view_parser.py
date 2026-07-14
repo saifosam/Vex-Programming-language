@@ -1,4 +1,4 @@
-from src.view_parser import parse_view
+from view_parser import parse_view
 
 def test_basic_view():
     sample = """    text("Count is 0")
