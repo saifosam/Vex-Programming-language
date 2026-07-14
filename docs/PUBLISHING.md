@@ -41,6 +41,17 @@ python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-ur
 - Create an API token on https://pypi.org/ and add it to your repository secrets as `PYPI_API_TOKEN`.
 - Create a release tag (e.g. `v0.1.0`) and push it. The GitHub Actions workflow will build and upload.
 
+Install from PyPI when available:
+
+```bash
+python -m pip install vex-lang
+```
+
+5. Publish to PyPI
+
+- Create an API token on https://pypi.org/ and add it to your repository secrets as `PYPI_API_TOKEN`.
+- Create a release tag (e.g. `v0.1.0`) and push it. The GitHub Actions workflow will build and upload.
+
 Manual upload:
 
 ```bash

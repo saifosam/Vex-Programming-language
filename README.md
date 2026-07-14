@@ -147,8 +147,13 @@ Install dependencies with:
 ## Publishing
 
 This project uses `vex-lang` as the distribution name while providing a top-level
-import alias so users can `import vex` after installation. For full publish
-instructions (building, testing, uploading to TestPyPI/PyPI, and CI details),
+import alias so users can `import vex` after installing. Install the package with:
+
+```bash
+python -m pip install vex-lang
+```
+
+For full publish instructions (building, testing, uploading to TestPyPI/PyPI, and CI details),
 see the publishing guide: [docs/PUBLISHING.md](docs/PUBLISHING.md).
 
 Quick local publish commands:
@@ -168,6 +173,8 @@ To create a standalone Windows executable, use PyInstaller:
 python -m pip install --upgrade pyinstaller
 scripts\build_installer.bat
 ```
+
+If `assets\vex.ico` is present, the build script will embed it into `dist\vex.exe`.
 
 This generates `dist\vex.exe`, which can be run against `.vex` files directly.
 For a full installer package, wrap `dist\vex.exe` with Inno Setup or NSIS.

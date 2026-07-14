@@ -5,6 +5,6 @@ while providing the Python import path `vex` and the console script
 `vex`.
 """
 
-from .cli import main
+from cli import main
 
 __all__ = ["main"]

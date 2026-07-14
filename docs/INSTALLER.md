@@ -24,6 +24,8 @@ python -m pip install --upgrade pyinstaller
 scripts\build_installer.bat
 ```
 
+If `assets\vex.ico` is present, PyInstaller will embed that icon into `dist\vex.exe` automatically.
+
 What it produces
 
 - `dist\vex.exe` — a standalone executable that includes the CLI entrypoint.

@@ -1,2 +1,2 @@
 [console_scripts]
-vex = vex.cli:main
+vex = vex:main
