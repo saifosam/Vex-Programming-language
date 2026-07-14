@@ -1,0 +1,33 @@
+{
+  "scopeName": "source.vex",
+  "name": "Vex",
+  "patterns": [
+    {
+      "name": "keyword.control.vex",
+      "match": "\\b(style|logic|view)\\b"
+    },
+    {
+      "name": "string.quoted.double.vex",
+      "begin": "\"",
+      "end": "\""
+    },
+    {
+      "name": "string.quoted.single.vex",
+      "begin": "'",
+      "end": "'"
+    },
+    {
+      "name": "constant.numeric.vex",
+      "match": "\\b\\d+(?:\\.\\d+)?\\b"
+    },
+    {
+      "name": "constant.language.boolean.vex",
+      "match": "\\b(true|false|True|False)\\b"
+    },
+    {
+      "name": "variable.parameter.vex",
+      "match": "\\b(onclick|bind|role|background|color|font_size|width|height|shadow|title|align|source|size|cols|rows|span|x|y)\\b"
+    }
+  ],
+  "repository": {}
+}

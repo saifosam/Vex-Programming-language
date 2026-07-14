@@ -1,0 +1,12 @@
+{
+  "iconDefinitions": {
+    "vex-icon": {
+      "iconPath": "../resources/vex-icon.svg"
+    }
+  },
+  "fileExtensions": {
+    "vex": "vex-icon"
+  },
+  "folderNames": {},
+  "fileNames": {}
+}

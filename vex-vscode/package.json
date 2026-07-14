@@ -1,0 +1,51 @@
+{
+  "name": "vex-language",
+  "displayName": "Vex Language",
+  "description": "Adds syntax highlighting, file icon, and language support for Vex .vex files in VS Code.",
+  "version": "0.0.1",
+  "publisher": "SaifOsam",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "vex",
+    "dsl",
+    "language",
+    "customtkinter",
+    "vscode"
+  ],
+  "icon": "./resources/vex-icon.svg",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vex",
+        "aliases": ["Vex", "vex"],
+        "extensions": [".vex"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vex",
+        "scopeName": "source.vex",
+        "path": "./syntaxes/vex.tmLanguage.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "vex-icon-theme",
+        "label": "Vex File Icon Theme",
+        "path": "./icons/vex-icon-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourname/vex-lang"
+  },
+  "license": "MIT"
+}

@@ -179,4 +179,12 @@ If `assets\vex.ico` is present, the build script will embed it into `dist\vex.ex
 This generates `dist\vex.exe`, which can be run against `.vex` files directly.
 For a full installer package, wrap `dist\vex.exe` with Inno Setup or NSIS.
 
+To make `.vex` files show the Vex icon globally in Windows Explorer, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\register_vex_file_assoc.ps1
+```
+
+That registers the `.vex` extension with the icon from `assets\vex.ico` for the current user. Restart Explorer or sign out/in to refresh the icon cache.
+
 Read more in [docs/INSTALLER.md](docs/INSTALLER.md).
