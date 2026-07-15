@@ -7,7 +7,7 @@ style:
 logic:
     import webbrowser
     def open_github():
-        webbrowser.open("https://github.com/yourusername")
+        webbrowser.open("https://github.com/saifosam")
 
 view:
     card(shadow="true"):
