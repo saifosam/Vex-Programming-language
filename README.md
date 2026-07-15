@@ -12,6 +12,19 @@ actual code. That means:
 - `style:` defines reusable visual defaults in a simple selector block syntax.
 - `view:` declares the UI with Python-like call syntax and nested indentation.
 
+Each `.vex` file is split into three zones:
+
+```vex
+style:
+    [styling rules]
+
+logic:
+    [Python code]
+
+view:
+    [UI structure]
+```
+
 ## Zones
 
 ### `style:`
@@ -120,6 +133,13 @@ If you are using the included virtual environment:
 - `examples/` — sample `.vex` applications
 - `docs/` — language specification and design notes
 - `tests/` — unit tests for parser behavior
+
+## Documentation
+
+For detailed language specifications and design rationale, see:
+
+- [docs/language-spec.md](docs/language-spec.md) — complete zone syntax, built-in tags, and grammar reference
+- [docs/DESIGN.md](docs/DESIGN.md) — architectural decisions and why Vex is structured as it is
 
 ## Dependencies
 
