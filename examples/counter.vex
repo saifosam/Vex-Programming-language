@@ -1,15 +1,41 @@
 style:
-    text:
-        color: blue
+    window:
+        title: Counter
+        background: "#f0f4f8"
+        width: 400
+        height: 350
+    card:
+        background: white
+        corner_radius: 20
+        shadow: true
+    display:
+        font_size: 64
+        color: "#0f172a"
     button:
-        color: red
+        font_size: 20
+        corner_radius: 14
+        width: 80
 
 logic:
     count = 0
 
     def increment():
-        print("clicked!")
+        global count
+        count += 1
+
+    def decrement():
+        global count
+        count -= 1
+
+    def reset():
+        global count
+        count = 0
 
 view:
-    text("Count is 0")
-    button("Click me", onclick=increment)
+    card():
+        text("Counter", role="title", color="#334155")
+        display(bind="count", align="center")
+        row():
+            button("−", onclick=decrement, background="#ef4444", hover="#dc2626")
+            button("Reset", onclick=reset, background="#64748b", hover="#475569")
+            button("+", onclick=increment, background="#22c55e", hover="#16a34a")

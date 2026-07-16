@@ -1,0 +1,13 @@
+{
+  "name": "vex",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev docsite",
+    "docs:build": "vitepress build docsite",
+    "docs:preview": "vitepress preview docsite"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

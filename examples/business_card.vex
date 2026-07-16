@@ -14,5 +14,5 @@ view:
         avatar(source="Saif")
         text("Saif", role="title", color="black", font_size=22)
         text("Aspiring Software Engineer", role="subtitle")
-        text("saif@example.com", role="caption")
+        text("saifosam.business@gmail.com", role="caption")
         button("View GitHub", onclick=open_github, background="#16a34a")

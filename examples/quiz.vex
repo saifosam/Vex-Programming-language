@@ -1,49 +1,70 @@
 style:
     window:
         title: Quiz
-        width: 380
-        height: 380
+        background: "#f0f4f8"
+        width: 420
+        height: 460
     card:
+        background: white
+        corner_radius: 20
         shadow: true
     button:
-        background: "#374151"
         corner_radius: 14
+        font_size: 15
 
 logic:
+    import random
+
     questions = [
         {"q": "What is 2 + 2?", "options": ["3", "4", "5", "6"], "answer": 1},
         {"q": "Capital of France?", "options": ["Berlin", "Madrid", "Paris", "Rome"], "answer": 2},
         {"q": "Which is a real Python keyword?", "options": ["func", "def", "routine", "method"], "answer": 1},
+        {"q": "What planet is known as the Red Planet?", "options": ["Venus", "Mars", "Jupiter", "Saturn"], "answer": 1},
+        {"q": "What year did the Titanic sink?", "options": ["1912", "1905", "1923", "1898"], "answer": 0},
+        {"q": "Which data type is mutable?", "options": ["tuple", "int", "list", "str"], "answer": 2},
     ]
+    random.shuffle(questions)
     current = 0
     score = 0
     question_text = ""
     progress_text = ""
+    feedback_text = ""
     option_a = option_b = option_c = option_d = ""
     restart_label = ""
+    locked = False
 
     def load_question():
-        global question_text, progress_text, option_a, option_b, option_c, option_d
+        global question_text, progress_text, option_a, option_b, option_c, option_d, locked
         q = questions[current]
         question_text = q["q"]
         progress_text = f"Question {current + 1} of {len(questions)}"
         option_a, option_b, option_c, option_d = q["options"]
+        locked = False
 
     load_question()
 
     def check_answer(i):
-        global current, score, question_text, progress_text
-        global option_a, option_b, option_c, option_d, restart_label
-        if i == questions[current]["answer"]:
+        global current, score, question_text, progress_text, feedback_text
+        global option_a, option_b, option_c, option_d, restart_label, locked
+        if locked:
+            return
+        locked = True
+        q = questions[current]
+        correct = q["options"][q["answer"]]
+        if i == q["answer"]:
             score += 1
+            feedback_text = f"✓ Correct! ({correct})"
+        else:
+            feedback_text = f"✗ The answer was: {correct}"
         current += 1
         if current < len(questions):
             load_question()
         else:
             question_text = "Quiz complete!"
-            progress_text = f"Score: {score} / {len(questions)}"
+            progress_text = f"Final Score: {score} / {len(questions)}"
             option_a = option_b = option_c = option_d = ""
             restart_label = "Play Again"
+            feedback_text = ""
 
     def answer_a(): check_answer(0)
     def answer_b(): check_answer(1)
@@ -51,10 +72,13 @@ logic:
     def answer_d(): check_answer(3)
 
     def restart_quiz():
-        global current, score, restart_label
+        global current, score, restart_label, feedback_text, locked
+        random.shuffle(questions)
         current = 0
         score = 0
         restart_label = ""
+        feedback_text = ""
+        locked = False
         load_question()
 
 view:
@@ -62,8 +86,9 @@ view:
         text("Quiz", role="title")
         display(bind="progress_text", font_size=12, color="#9ca3af", align="center")
         display(bind="question_text", font_size=18, color="#111827", align="center")
-        button(bind="option_a", onclick=answer_a)
-        button(bind="option_b", onclick=answer_b)
-        button(bind="option_c", onclick=answer_c)
-        button(bind="option_d", onclick=answer_d)
-        button(bind="restart_label", onclick=restart_quiz, background="#16a34a")
+        display(bind="feedback_text", font_size=14, align="center")
+        button(bind="option_a", onclick=answer_a, background="#374151", hover="#4b5563")
+        button(bind="option_b", onclick=answer_b, background="#374151", hover="#4b5563")
+        button(bind="option_c", onclick=answer_c, background="#374151", hover="#4b5563")
+        button(bind="option_d", onclick=answer_d, background="#374151", hover="#4b5563")
+        button(bind="restart_label", onclick=restart_quiz, background="#16a34a", hover="#15803d")

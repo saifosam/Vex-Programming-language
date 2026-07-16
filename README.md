@@ -25,6 +25,72 @@ view:
     [UI structure]
 ```
 
+## Getting started
+
+### 1. Install dependencies
+
+```bash
+pip install customtkinter pillow
+```
+
+### 2. Run an example app
+
+```bash
+python src/cli.py examples/calculator.vex
+```
+
+A calculator window will open. Close it and try some of the other examples in the `examples/` folder.
+
+### 3. Create your own Vex app
+
+Create a file called `hello.vex` with three zones:
+
+```vex
+style:
+    window:
+        title: Hello
+        width: 360
+        height: 240
+    button:
+        background: "#2563eb"
+        color: white
+        font_size: 15
+
+logic:
+    message = ""
+
+    def greet():
+        global message
+        message = "Hello, Vex!"
+
+view:
+    card():
+        text("My First App", role="title")
+        display(bind="message", font_size=18, color="#16a34a", align="center")
+        button("Click me", onclick=greet)
+```
+
+Run it:
+
+```bash
+python src/cli.py hello.vex
+```
+
+You'll see a card with a title, a display area, and a button. Click the button — the display updates with "Hello, Vex!"
+
+### Understanding the three zones
+
+- **`style:`** — defines colours, sizes, and layout for each UI element type.
+- **`logic:`** — plain Python. Variables here can be shown in the UI via ``display(bind="varname")`` and functions can be called from ``button(onclick=fn)``.
+- **`view:`** — the UI tree. Containers like ``card()`` and ``row()`` hold other elements; leaf nodes like ``text()``, ``button()``, and ``display()`` create actual widgets.
+
+### Key concepts
+
+- **Bound displays** — ``display(bind="count")`` shows the live value of a Python variable. The display updates whenever your button handlers call ``global count``.
+- **Global keyword** — always use ``global varname`` inside functions that modify a variable you want reflected in the UI.
+- **Layout helpers** — use ``row()`` for horizontal arrangement, ``column()`` for vertical, and ``grid(cols=4, rows=5)`` for calculator-style grids.
+
+
 ## Zones
 
 ### `style:`
@@ -112,16 +178,6 @@ name to `CTk<TagName>` (for example, `entry(...)` becomes `CTkEntry(...)`).
             button("Increment", onclick=increment)
             display(bind="count", align="center")
 
-## Running a Vex app
-
-From the repo root, run:
-
-    python src/cli.py examples/counter.vex
-
-If you are using the included virtual environment:
-
-    .venv\Scripts\python.exe src/cli.py examples/counter.vex
-
 ## Project layout
 
 - `src/cli.py` — app entrypoint that splits zones, executes `logic:`, parses `style:` and `view:`, and launches the GUI
@@ -140,6 +196,78 @@ For detailed language specifications and design rationale, see:
 
 - [docs/language-spec.md](docs/language-spec.md) — complete zone syntax, built-in tags, and grammar reference
 - [docs/DESIGN.md](docs/DESIGN.md) — architectural decisions and why Vex is structured as it is
+
+---
+
+### Example apps
+
+All examples live in the `examples/` folder. Run any of them from the repo root with:
+
+    python src/cli.py examples/<filename>.vex
+
+Or with the included virtual environment on Windows:
+
+    .venv\Scripts\python.exe src/cli.py examples/<filename>.vex
+
+---
+
+#### Counter
+
+A minimal counter with increment, decrement, and reset buttons. Demonstrates `display(bind=...)` for live value tracking, `row()` layout, and inline button styling with hover states.
+
+```bash
+python src/cli.py examples/counter.vex
+```
+
+![Counter screenshot](screenshots/Counter.png)
+
+---
+
+#### Calculator
+
+A fully functional iPhone-style calculator supporting `+`, `−`, `×`, `÷`, `%`, sign toggle, and decimal input. Showcases `grid(cols=4, rows=5)` layout with span support.
+
+```bash
+python src/cli.py examples/calculator.vex
+```
+
+![Calculator screenshot](screenshots/Calculator.png)
+
+---
+
+#### Business Card
+
+A digital business card with avatar initials badge, title/subtitle/caption text, and a clickable button that opens a GitHub profile in the browser. Demonstrates `avatar()`, inline text roles, and the `webbrowser` module from Python's standard library.
+
+```bash
+python src/cli.py examples/business_card.vex
+```
+
+![Business Card screenshot](screenshots/Business card.png)
+
+---
+
+#### Quiz
+
+A trivia quiz game with 6 shuffled questions, score tracking, answer feedback (correct/incorrect), answer locking to prevent double-clicks, and a play-again loop. Demonstrates complex `logic:` workflows with lists, random shuffle, and bound button text.
+
+```bash
+python src/cli.py examples/quiz.vex
+```
+
+![Quiz screenshot](screenshots/Quiz.png)
+
+---
+
+#### Whiteboard
+
+An Excalidraw-style drawing canvas with 9 tools: select, freehand pencil, rectangle, oval, line, arrow, text notes, eraser, plus undo/redo. Features a color palette swatch for recoloring shapes and draggable sticky notes on the canvas.
+
+```bash
+python src/cli.py examples/mood_board.vex
+```
+
+![Whiteboard screenshot](screenshots/Whiteboard.png)
 
 ## Dependencies
 
