@@ -1,8 +1,17 @@
-[![Deploy docs](https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml)
+<div align="center">
 
-> **📖 Documentation site:** [saifosam.github.io/Vex-Programming-language](https://saifosam.github.io/Vex-Programming-language/)
+<p align="center">
+  <img src="assets/vex logo.png" alt="Vex logo" height="148" style="vertical-align: middle;">
+</p>
 
 # Vex Programming Language
+
+<p align="center">
+  <a href="https://saifosam.github.io/Vex-Programming-language/" target="_blank"><img alt="Docs — Vex Docs" src="https://img.shields.io/badge/Docs-saifosam.github.io%2FVex%E2%86%97-F97316?style=for-the-badge&labelColor=1C1917&color=F97316" height="24"></a>
+  <a href="https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml" target="_blank"><img alt="Deploy docs" src="https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml/badge.svg" height="24"></a>
+</p>
+
+</div>
 
 Vex is a tiny Python-based DSL for building styled desktop apps using `customtkinter`.
 A `.vex` file is divided into three top-level zones: `style:`, `logic:`, and `view:`.
