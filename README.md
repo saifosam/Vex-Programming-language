@@ -1,5 +1,7 @@
 [![Deploy docs](https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/saifosam/Vex-Programming-language/actions/workflows/deploy-docs.yml)
 
+> **📖 Documentation site:** [saifosam.github.io/Vex-Programming-language](https://saifosam.github.io/Vex-Programming-language/)
+
 # Vex Programming Language
 
 Vex is a tiny Python-based DSL for building styled desktop apps using `customtkinter`.
